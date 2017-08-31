@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Characters | {{ name }}{% endblock %}
+
+{% block navigation %}
+    <ul class="navbar-nav">
+        <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <h1>{{ name }}</h1>
+    <p>This page holds information about <span class="text-secondary">{{ name|upper }}</span>.</p>
+    <p>Other information about <span class="text-secondary">{{ name|upper }}</span> can be loaded in dynamically with JSON through an API, or through database calls. This data may include stats, abilities, relationships with other characters, and backstory.</p>
+    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Curabitur blandit tempus porttitor.</p>
+    <a href="/" class="btn btn-primary">&laquo; Go back</a>
+</div>
+{% endblock %}
