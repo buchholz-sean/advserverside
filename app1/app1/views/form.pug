@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    .container
+        .jumbotron
+            h1= title
+            p Please register using the form below
+            hr
+            form(action='/users', method='POST')
+                .form-group
+                    label(for='email') Email Address
+                    input.form-control(id='email', type='email', name='email', placeholder='name@example.com')
+                .form-group
+                    label(for='password') Password
+                    .row
+                        .col
+                            input.form-control(id='password', type='password', name='password', placeholder='Please enter a strong password')
+                        .col
+                            input.form-control(id='passVerify', type='password', name='passVerify', placeholder='Please type your password again')
+                .form-group
+                    input.btn.btn-primary(type='submit', name='submit', value='Submit')
+                if msg
+                    span.alert.alert-danger= msg
