@@ -1,52 +1,69 @@
 var express = require('express');
 var router = express.Router();
+// sha1 is not a good idea for hashing passwords in production!
+// I am only using sha1 here as an example for this assignment
+var sha1 = require('sha1');
 
-/* GET users listing. */
+// General options including page title and navigation items
+var options = {
+    'title': 'Users',
+    'navitems': [{
+        'link': '/',
+        'content': 'Home'
+    }, {
+        'link': '/users',
+        'content': 'Users'
+    }]
+}
+
+// GET registration form
 router.get('/', function(req, res, next) {
-    res.render('form', {
-        title: 'Sign Up',
-        navitems: [{
-            link: '/',
-            content: 'Home'
-        }, {
-            link: '/users',
-            content: 'Users'
-        }]
-    });
+    options.msg = null;
+    res.render('form', options);
 });
 
+// POST registration form data
 router.post('/', function(req, res, next) {
-    var email = req.body.email;
-    var pass = req.body.password;
-    var passVerify = req.body.passVerify;
+    // Initialize a blank user object
+    // This may be used to push an object to a database in the future
+    var user = {
+        username: '',
+        email: '',
+        password: ''
+    };
+    // Get values of input fields
+    var usernameInput = req.body.username;
+    var emailInput = req.body.email;
+    var passInput = req.body.password;
+    var passVerifyInput = req.body.passVerify;
+    // Basic email regex pattern
     var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!regex.test(email)) {
-        res.render('form', {
-            title: 'Sign Up',
-            msg: 'Please enter a valid email address',
-            navitems: [{
-                link: '/',
-                content: 'Home'
-            }, {
-                link: '/users',
-                content: 'Users'
-            }]
-        })
+    // Ensure all fields are filled out
+    if (usernameInput == '' || emailInput == '' || passInput == '' || passVerifyInput == '') {
+        // This should never happen thanks to HTML5 form field 'required' param
+        options.msg = 'Please fill out all fields';
+        res.render('form', options)
     } else {
-        if (pass != passVerify) {
-            res.render('form', {
-                title: 'Sign Up',
-                msg: 'Passwords do not match',
-                navitems: [{
-                    link: '/',
-                    content: 'Home'
-                }, {
-                    link: '/users',
-                    content: 'Users'
-                }]
-            });
+        // Ensure email address is proper format
+        if (!regex.test(emailInput)) {
+            options.msg = 'Please enter a valid email address';
+            res.render('form', options)
         } else {
-            res.send("Thank you for signing up");
+            // Ensure password and password verification match
+            if (passInput != passVerifyInput) {
+                options.msg = 'Passwords do not match';
+                res.render('form', options);
+            } else {
+                // Assign input values to user object
+                user.username = usernameInput;
+                user.email = emailInput;
+                user.password = sha1(passInput);
+                // Add user details to options passed to view
+                options.name = user.username;
+                options.email = user.email;
+                // Render userHome
+                res.render('userHome', options)
+            }
         }
     }
 

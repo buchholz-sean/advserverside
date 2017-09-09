@@ -8,15 +8,18 @@ block content
             hr
             form(action='/users', method='POST')
                 .form-group
+                    label(for='username') User Name
+                    input.form-control(id='username', type='text', name='username', placeholder='ex. Batman1989' required)
+                .form-group
                     label(for='email') Email Address
-                    input.form-control(id='email', type='email', name='email', placeholder='name@example.com')
+                    input.form-control(id='email', type='email', name='email', placeholder='name@example.com' required)
                 .form-group
                     label(for='password') Password
                     .row
                         .col
-                            input.form-control(id='password', type='password', name='password', placeholder='Please enter a strong password')
+                            input.form-control(id='password', type='password', name='password', placeholder='Please enter a strong password' required)
                         .col
-                            input.form-control(id='passVerify', type='password', name='passVerify', placeholder='Please type your password again')
+                            input.form-control(id='passVerify', type='password', name='passVerify', placeholder='Please type your password again' required)
                 .form-group
                     input.btn.btn-primary(type='submit', name='submit', value='Submit')
                 if msg
