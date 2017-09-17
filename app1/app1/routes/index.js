@@ -1,24 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
+// General options including page title and navigation items
+var options = {
+    'title': 'Home',
+    'navitems': [{
+        'link': '/',
+        'content': 'Home'
+    }, {
+        'link': '/characters',
+        'content': 'Characters'
+    }]
+}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index', {
-        title: 'Home',
-        navitems: [{
-                link: '/',
-                content: 'Home'
-            },
-            {
-                link: '/users',
-                content: 'Users'
-            }
-        ]
-    });
+    res.render('index', options);
 });
-
-// router.get('/registration', function(req, res, next){
-//
-// })
 
 module.exports = router;

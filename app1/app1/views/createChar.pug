@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    .container
+        .jumbotron
+            h1= title
+            p Create your Character Below
+            hr
+            form(action='/characters/create', method='POST')
+                .form-group
+                    label(for='charName') Name
+                    input.form-control(id='charName', type='text', name='charName', placeholder='ex. Gygaxion' required)
+                .form-group
+                    label(for='charClass') Class
+                    select.form-control(id='charClass', name='charClass', required)
+                        each opt in classOpts
+                            option(value=opt.value) #{opt.text}
+                .form-group
+                    a.btn.btn-secondary(href='/characters') &laquo; Cancel
+                    | 
+                    input.btn.btn-primary(type='submit', name='submit', value='Create!')
+                if errmsg
+                    span.alert.alert-danger= errmsg
