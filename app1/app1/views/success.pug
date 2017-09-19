@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    .jumbotron
+        .container
+            h1.display-3 Success!
+            p #{newChar} created!
+            hr
+            a.btn.btn-secondary(href='/characters/create') Create Another Character
+            | 
+            a.btn.btn-primary(href='/characters') Characters List

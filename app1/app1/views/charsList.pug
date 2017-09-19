@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    .container
+        .jumbotron    
+            h1 List of Characters
+            if msg
+                span.alert.alert-success= msg
+            hr
+            a.btn.btn-primary(href='/characters/create') Create a new Character &raquo;
+            table.table.table-striped
+                thead
+                    tr
+                        th Name
+                        th Class
+                        th(colspan='2') Actions
+                tbody
+                    each char in charsList 
+                        tr 
+                            td= char.name
+                            td= char.class
+                            td
+                                a.btn.btn-outline-secondary.btn-sm(href='/characters/edit/' + char.name) #[span.fa.fa-pencil-square-o] Edit
+                            td
+                                a.btn.btn-outline-danger.btn-sm(href='/characters/delete/' + char.name) #[span.fa.fa-trash-o] Delete
+                                
