@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Characters{% endblock %}
+
+{% block body %}
+    <div class="jumbotron">
+        <h1>Characters</h1>
+        <hr>
+        <div class="row">
+
+            {% for char, class in charsList %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="card" style="margin-bottom: 1rem;">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ char }}</h4>
+                            <p>The {{ class }}</p>
+                            <a href="/chars/{{ char }}" class="card-link">View &raquo;</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}
+
