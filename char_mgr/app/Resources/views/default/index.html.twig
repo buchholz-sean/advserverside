@@ -15,10 +15,12 @@
                             <h4 class="card-title">{{ char }}</h4>
                             <p>The {{ class }}</p>
                             <a href="/chars/{{ char }}" class="card-link">View</a>
+
                             {% if loggedIn %}
-                            <a href="#" class="card-link">Edit</a>
-                            <a href="#" class="card-link">Delete</a>
+                            <a href="#" class="card-link mr-auto disabled"><span class="fa fa-pencil-square-o"></span> Edit</a>
+                            <a href="#" class="card-link mr-auto disabled"><span class="fa fa-trash-o"></span> Delete</a>
                             {% endif %}
+                            
                         </div>
                     </div>
                 </div>
@@ -26,4 +28,13 @@
         </div>
 
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/bootstrap.min.js') }}" charset="utf-8"></script>
+    <script type="text/javascript">
+        $('.disabled').click(function(e){
+            e.preventDefault();
+        });
+    </script>
 {% endblock %}
