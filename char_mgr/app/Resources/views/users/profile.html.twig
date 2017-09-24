@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <h1>{{ user.fullname }}</h1>
+    <div class="row">
+        <div class="col-6">
+            <p class="lead">Hi {{ user.name }}! This is a protected page where you can view your user profile.</p>
+            <p>This page is not accessible to users who are not logged in.</p>
+        </div>
+        <div class="col">
+            <img src="{{ user.pic }}" alt="User profile picture" class="rounded-circle">
+        </div>
+    </div>
+    <hr>
+    <a href="/" class="btn btn-primary">&laquo; Go back</a>
+</div>
+{% endblock %}
