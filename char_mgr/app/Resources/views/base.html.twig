@@ -4,12 +4,17 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}Welcome!{% endblock %}</title>
+
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css' )}}">
+            <link rel="stylesheet" href="{{ asset('css/master.css' )}}">
         {% endblock %}
+
         {% block cdn %}
             <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+            <script src="https://use.fontawesome.com/31f4af1659.js"></script>
         {% endblock %}
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -18,6 +23,7 @@
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark" role="navigation">
             <a href="/" class="navbar-brand">ASL</a>
+
             {% block navigation %}
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
@@ -35,10 +41,14 @@
                 {% endif %}
             </ul>
             {% endblock %}
+
         </nav>
+        
         <div class="container">
-            {% block body %}{% endblock %}
+            {% block body %}
+            {% endblock %}
         </div>
+
         {% block javascripts %}
             <script src="{{ asset('js/bootstrap.min.js') }}" charset="utf-8"></script>
         {% endblock %}
