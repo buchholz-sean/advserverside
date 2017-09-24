@@ -39,3 +39,13 @@ monolog:
 
 #swiftmailer:
 #    delivery_addresses: ['me@example.com']
+
+# Google Configuration
+# google:
+#     type:                            google
+#     client_id:                       '%client_id%'
+#     client_secret:                   '%secret_id%'
+#     scope:                           "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+#     paths:
+#         email:                       email
+#         profilepicture:              picture
