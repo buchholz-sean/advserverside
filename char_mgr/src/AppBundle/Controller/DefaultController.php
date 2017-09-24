@@ -46,7 +46,7 @@ class DefaultController extends Controller
     /**
      * @Route("/registerForm", name="registerForm")
      */
-    public function registerForm(Request $req)
+    public function showFormAction(Request $req)
     {
         $form = $this->createFormBuilder(null)
         ->setAction($this->generateUrl("registerForm"))
@@ -78,7 +78,7 @@ class DefaultController extends Controller
                 $file = $form->get("myFile")->getData();
                 $fileName = md5(uniqid()).".".$file->guessExtension();
                 $file->move("/Users/SeanBuchholz/Desktop/proj", $fileName);
-                
+
                 return $this->render("form/submitted.html.twig", array("title"=>"Register"));
             }
         };
