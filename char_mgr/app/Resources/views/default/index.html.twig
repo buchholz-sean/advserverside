@@ -14,7 +14,11 @@
                         <div class="card-body">
                             <h4 class="card-title">{{ char }}</h4>
                             <p>The {{ class }}</p>
-                            <a href="/chars/{{ char }}" class="card-link">View &raquo;</a>
+                            <a href="/chars/{{ char }}" class="card-link">View</a>
+                            {% if loggedIn %}
+                            <a href="#" class="card-link">Edit</a>
+                            <a href="#" class="card-link">Delete</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -23,4 +27,3 @@
 
     </div>
 {% endblock %}
-
